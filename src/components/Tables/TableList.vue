@@ -3,13 +3,15 @@
         <table>
             <th></th>
             <tr v-for="table in tables" :key="table.id">
-                <td><a @click="onClickTable">{{table.name}}</a></td>
+                <td><a @click="onClickTable(table.id)">{{table.name}}</a></td>
             </tr>
         </table>
     </div>
 </template>
 
 <script>
+    import router from '../../router'
+
     export default {
         name:'tablelist',
         props: ['tables'],
@@ -17,23 +19,7 @@
             return {}
         },
         methods:{
-            onClickTable(){ alert('Table Clicked') },
+            onClickTable(id){ router.push(`/mesa/${id}`) },
         }
     }
 </script>
-
-<style>
-
-table{
-    text-align: center;
-    width: 100%;
-    height: 25px;
-    overflow: scroll;
-    margin-bottom: 5vh;
-}
-
-td {
-    width: 100%;
-}
-
-</style>
