@@ -23,6 +23,7 @@ export default {
 
 h1, h2 {
   font-weight: normal;
+  margin: 3vh 3vh;
 }
 
 ul {
@@ -41,6 +42,7 @@ a {
 
 .small-table{
     display: block;
+    margin:0 auto;
     max-height: 20vh;
     overflow: scroll;
 }
