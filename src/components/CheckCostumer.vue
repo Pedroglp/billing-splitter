@@ -1,11 +1,11 @@
 <template>
     <div class="checkcostumer">
-        <h1>Novo Pedido</h1>
+        <h1>Pedido</h1>
         <h2>Cardápio</h2>
         <productlist :items="getProducts"></productlist>
         <h2>Escolhidos</h2>
         <orderlist :items="getOrderFromCostumer"></orderlist>
-        <button>Voltar</button>
+        <button @click="goBack">Voltar</button>
         <button>Pagar</button>
     </div>
 </template>
@@ -28,24 +28,18 @@
             },
             getOrderFromCostumer(){
                 let costumer = this.$store.getters.getCostumer({
-                    tableId: this.$route.query.table, 
-                    costumerId: this.costumerId
-                })
+                    tableId: parseInt(this.$route.query.tableId), 
+                    costumerId: parseInt(this.$route.params.id)
+                }) || {}
                 return costumer.products
             }
         },
         methods: {
-            saveCotumerOrder() {
-                //commit addCostumerToTable
-                this.costumerId += 1
-                this.costumerName = ''
-            },
             goBack() {
                 router.go(-1)
             },
         },
         created() {
-            //commit pushTable
         }
     }
 </script>
