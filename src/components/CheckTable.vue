@@ -1,7 +1,6 @@
 <template>
     <div class="checktable">
         <h1>{{`Mesa ${$route.params.id}`}}</h1>
-        <input type="text" placeholder="Nome do Cliente">
         <h2>Pedidos da Mesa</h2>
         <productlist :items="getProducts"></productlist>
         <h2>Clientes</h2>
@@ -20,6 +19,7 @@
         components:{productlist, costumerlist},
         data(){
             return {
+                products: []
             }
         },
         computed:{
