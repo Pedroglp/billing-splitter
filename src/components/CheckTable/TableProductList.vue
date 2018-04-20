@@ -1,6 +1,5 @@
 <template>
-    <div class="product-list">
-        <div class="small-table">
+    <div class="product-list small-table">
         <table>
             <th></th>
             <tr v-for="item in items" :key="item.id">
@@ -8,7 +7,6 @@
                 <td>{{`R$ ${item.value}`}}</td>
             </tr>
         </table>
-        </div>
     </div>
 </template>
 

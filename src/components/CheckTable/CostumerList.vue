@@ -1,5 +1,5 @@
 <template>
-    <div class="costumer-list small-list">
+    <div class="costumer-list small-table">
         <table>
             <th></th>
             <tr v-for="costumer in table.costumers" :key="costumer.id">
@@ -20,10 +20,17 @@
                 costumers: this.table.costumers
             }
         },
-        methods:{
+        computed: {
+            getCostumerTotal(){
+                return this.table.costumers.forEach( costumer => {
+                    return costumer.products.reduce((total, product) => {
+                        return total + product.value
+                    })
+                })
+            }
+        },
+        methods: {
             onClickCostumer(id){ router.push(`/cliente/${id}?tableId=${this.table.id}`) },
         }
     }
 </script>
-
-<style>
