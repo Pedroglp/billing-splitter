@@ -9,6 +9,7 @@
 <script>
     import tablelist from "./Tables/TableList.vue"
     import router from '../router'
+    
     export default {
         name:'tables',
         components:{tablelist},
@@ -23,7 +24,7 @@
         },
         methods: {
             goToNewOrder(){
-                router.push('NewOrder')
+                router.push('novo-pedido')
             }
         }
     }
