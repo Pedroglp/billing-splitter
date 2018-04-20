@@ -130,31 +130,35 @@ const state = {
 }
 
 const getters = {
-    getTable: (state, {id}) =>{
+    getTable: (state) => id => {
         return state.tables.find(table => {
-            table.id === id
+            return table.id === id
         })
     },
     getTableList: (state) => {
         return state.tables
     },
-    getTotal: (state, {id}) => {
-        let targetTable = this.getTable(id)
-        let products = targetTable.reduce((productsList, costumer) => {
-            return productsList + costumer.products
-        })
+    getTableProducts:(state, getters) => id =>{
+        let table = getters.getTable(id)
+        let productsList = []
+        return table.costumers.reduce((productsList, costumer) => {
+            return productsList.concat(costumer.products)
+        }, [])
+    },
+    getTotal: (state, getters) => id => {
+        let products = getTableProducts(id)
         return products.reduce((total, product) => {
             return total + product.price * product.quantity
         }, 0)
     },
-    getCostumer: (state, {table, costumer}) => {
+    getCostumer: (state, getters) => payload => {
         //filter table
-        let targetTable = getters.getTable(table.id)
+        let targetTable = getters.getTable(payload.tableId)
         return targetTable.costumers.find(costumer => {
-
-        })
+            return payload.costumerId === costumer.id
+        }, {})
     },
-    getCostumerList: (state, {id}) =>{
+    getCostumerList: (state) => id => {
         return state.table.costumers
     }
 }
