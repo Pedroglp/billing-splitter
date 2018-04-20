@@ -10,8 +10,8 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/', name: 'Tables', component: Tables },
   { path: '/novo-pedido', name: 'NewOrder', component: NewOrder},
-  { path: '/ver-mesa/:id', name: 'CheckTable', component: CheckTable},
-  { path: '/ver-cliente/:id', name: 'CheckCostumer', component: CheckCostumer}
+  { path: '/mesa/:id', name: 'CheckTable', component: CheckTable},
+  { path: '/cliente/:id', name: 'CheckCostumer', component: CheckCostumer, props(route){return route.query || {}}}
 ]
 
 export default new VueRouter({
