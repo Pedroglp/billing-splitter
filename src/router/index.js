@@ -11,10 +11,10 @@ const routes = [
   { path: '/', name: 'Tables', component: Tables },
   { path: '/novo-pedido', name: 'NewOrder', component: NewOrder},
   { path: '/mesa/:id', name: 'CheckTable', component: CheckTable},
-  { path: '/cliente/:id', name: 'CheckCostumer', component: CheckCostumer, props(route){return route.query || {}}}
+  { path: '/cliente/:id', name: 'CheckCostumer', component: CheckCostumer}
 ]
 
 export default new VueRouter({
-  routes,
-  mode: 'history',
+  routes: routes,
+  mode: 'history'
 })
