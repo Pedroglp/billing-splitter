@@ -38,4 +38,17 @@ li {
 a {
   color: #42b983;
 }
+
+.small-table{
+    display: block;
+    max-height: 20vh;
+    overflow: scroll;
+}
+
+table{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 5vh;
+}
+
 </style>
