@@ -15,7 +15,9 @@
         name:'productlist',
         props: ['items'],
         data(){
-            return {}
-        },
+            return {
+                total: 0
+            }
+        }
     }
 </script>
