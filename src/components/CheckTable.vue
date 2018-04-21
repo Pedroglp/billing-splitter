@@ -3,6 +3,7 @@
         <h1>{{`Mesa ${$route.params.id}`}}</h1>
         <h2>Pedidos da Mesa</h2>
         <productlist :items="getProducts"></productlist>
+        <div class="total">Total: R$ {{getTotal}}</div>
         <h2>Clientes</h2>
         <costumerlist :table="getTable"></costumerlist>
         <button @click="goBack()">Voltar</button>
@@ -28,7 +29,13 @@
                 return table
             },
             getProducts(){
-                return this.$store.getters.getTableProducts(parseInt(this.$route.params.id))
+                this.products = this.$store.getters.getTableProducts(parseInt(this.$route.params.id))
+                return this.products
+            },
+            getTotal(){
+                return this.products.reduce((total, product) => {
+                    return total + product.value
+                }, 0)
             }
         },
         methods:{
@@ -36,5 +43,14 @@
                 router.go(-1)
             },
         },
+        created(){
+            this.products = this.$store.getters.getTableProducts(parseInt(this.$route.params.id))
+        }
     }
 </script>
+
+<style>
+.total {
+    margin: 5vh auto;
+}
+</style>
