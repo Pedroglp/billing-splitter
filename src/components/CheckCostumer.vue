@@ -5,8 +5,9 @@
         <productlist :items="getProducts"></productlist>
         <h2>Escolhidos</h2>
         <orderlist :items="getOrderFromCostumer"></orderlist>
+        <div class="total">Total: R$ {{getTotal}}</div>
         <button @click="goBack">Voltar</button>
-        <button>Pagar</button>
+        <button @click="confirmPayment">Pagar</button>
     </div>
 </template>
 
@@ -20,26 +21,48 @@
         components:{productlist, orderlist},
         data() {
             return {
+                oostumer: {}
             }
         },
         computed: {
             getProducts(){
                 return this.$store.getters.getProductList
             },
-            getOrderFromCostumer(){
-                let costumer = this.$store.getters.getCostumer({
+            getCostumer(){
+                this.costumer = this.$store.getters.getCostumer({
                     tableId: parseInt(this.$route.query.tableId), 
                     costumerId: parseInt(this.$route.params.id)
                 }) || {}
-                return costumer.products
+            },
+            getOrderFromCostumer(){
+                return this.costumer.products || {}
+            },
+            getTotal(){
+                return this.costumer.products.reduce((total, product) => {
+                    return total + product.value
+                }, 0)
             }
         },
         methods: {
             goBack() {
                 router.go(-1)
             },
+            confirmPayment() {
+                alert('Pagamento Confirmado')
+            }
         },
         created() {
+            //init costumer
+            this.costumer = this.$store.getters.getCostumer({
+                    tableId: parseInt(this.$route.query.tableId), 
+                    costumerId: parseInt(this.$route.params.id)
+            }) || {}
         }
     }
 </script>
+
+<style>
+.total {
+    margin: 5vh auto;
+}
+</style>
