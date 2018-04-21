@@ -8,10 +8,10 @@ import CheckCostumer from '../components/CheckCostumer.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/billing-splitter/', name: 'Tables', component: Tables },
-  { path: '/billing-splitter/novo-pedido', name: 'NewOrder', component: NewOrder},
-  { path: '/billing-splitter/mesa/:id', name: 'CheckTable', component: CheckTable},
-  { path: '/billing-splitter/cliente/:id', name: 'CheckCostumer', component: CheckCostumer}
+  { path: 'https://pedroglp.github.io/billing-splitter/', name: 'Tables', component: Tables },
+  { path: 'https://pedroglp.github.io/billing-splitter/novo-pedido', name: 'NewOrder', component: NewOrder},
+  { path: 'https://pedroglp.github.io/billing-splitter/mesa/:id', name: 'CheckTable', component: CheckTable},
+  { path: 'https://pedroglp.github.io/billing-splitter/cliente/:id', name: 'CheckCostumer', component: CheckCostumer}
 ]
 
 export default new VueRouter({
