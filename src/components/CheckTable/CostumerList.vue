@@ -30,7 +30,7 @@
             }
         },
         methods: {
-            onClickCostumer(id){ router.push(`/cliente/${id}?tableId=${this.table.id}`) },
+            onClickCostumer(id){ router.push(`/billing-splitter/cliente/${id}?tableId=${this.table.id}`) },
         }
     }
 </script>

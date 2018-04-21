@@ -19,7 +19,7 @@
             return {}
         },
         methods:{
-            onClickTable(id){ router.push(`/mesa/${id}`) },
+            onClickTable(id){ router.push(`/billing-splitter/mesa/${id}`) },
         }
     }
 </script>

@@ -24,7 +24,7 @@
         },
         methods: {
             goToNewOrder(){
-                router.push('novo-pedido')
+                router.push('/billing-splitter/novo-pedido')
             }
         }
     }
