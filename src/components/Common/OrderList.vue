@@ -6,7 +6,6 @@
                 <td><a @click="onClickItem">{{item.name}}</a></td>
                 <td>{{`R$ ${item.value}`}}</td>
                 <td><button @click="onClickMinus">-</button></td>
-                <td><button @click="onClickAdd">+</button></td>
             </tr>
         </table>
     </div>
