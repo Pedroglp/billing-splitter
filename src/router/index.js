@@ -8,10 +8,10 @@ import CheckCostumer from '../components/CheckCostumer.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '../', name: 'Tables', component: Tables },
-  { path: '../novo-pedido', name: 'NewOrder', component: NewOrder},
-  { path: '../mesa/:id', name: 'CheckTable', component: CheckTable},
-  { path: '../cliente/:id', name: 'CheckCostumer', component: CheckCostumer}
+  { path: '/', name: 'Tables', component: Tables },
+  { path: '/novo-pedido', name: 'NewOrder', component: NewOrder},
+  { path: '/mesa/:id', name: 'CheckTable', component: CheckTable},
+  { path: '/cliente/:id', name: 'CheckCostumer', component: CheckCostumer}
 ]
 
 export default new VueRouter({
