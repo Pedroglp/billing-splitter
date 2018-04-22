@@ -3,6 +3,8 @@
 // possuem os clientes e cada cliente tem sua lista de item pedido
 // ex: {id:1, name:'Cliente', products: []}
 
+import router from '../../router'
+
 
 const state = {
     tables: [ 
@@ -164,13 +166,13 @@ const getters = {
 }
 
 const mutations = {
-    pushTable(state, table) {
+    PUSH_TABLE(state, table) {
         let id = this.state.tables[this.state.tables.length -1].id + 1
         this.state.tables.push({id: id, name:`Mesa${id}`, costumers:[]})
     },
     pushProductToCostumer(state, payload) {
         //filter costumer
-        let costumer = getters.getCostumer({table: targetTable, payload: payload.costumerId})
+        let costumer = this.getters.getCostumer({table: targetTable, payload: payload.costumerId})
         //add item
         cotumer.products.push(payload.product)
     },
@@ -181,18 +183,28 @@ const mutations = {
     productSubtractQuantity(state, payload) {
 
     },
-    payBill(state, payload){
-        
+    PAY_BILL(state, payload){
+        console.log(`Aqui: `+JSON.stringify(payload))
+        let table = this.getters.getTable(payload.tableId)
+        let tableWithoutCostumer = table.costumers.filter(costumer => {
+            return costumer.id != payload.costumerId
+        })
+        table.costumers = tableWithoutCostumer
+        router.push(`/billing-splitter/mesa/${payload.tableId}`)
     }
 }
 
 const actions = {
     newTable({commit, state}){
-        commit('pushTable')
+        commit('PUSH_TABLE')
     },
     addCostumerToTable({commit, state}){
         commit('ADD_COSTUMER')
+    },
+    payBill({commit}, payload){
+        commit('PAY_BILL', payload)
     }
+    
 }
 
 export default {
