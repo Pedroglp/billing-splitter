@@ -43,7 +43,7 @@
                 this.costumerName = ''
             },
             saveTableOrder(){
-                router.go(-1)
+                router.push('/billing-splitter/')
             },
         },
         created() {
