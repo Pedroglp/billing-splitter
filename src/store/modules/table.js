@@ -180,6 +180,9 @@ const mutations = {
     },
     productSubtractQuantity(state, payload) {
 
+    },
+    payBill(state, payload){
+        
     }
 }
 
