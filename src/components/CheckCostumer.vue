@@ -48,7 +48,11 @@
                 router.go(-1)
             },
             confirmPayment() {
-                alert('Pagamento Confirmado')
+                let payload = {
+                    tableId: parseInt(this.$route.query.tableId),
+                    costumerId: parseInt(this.$route.params.id)
+                }
+                this.$store.dispatch('payBill', payload)
             }
         },
         created() {
