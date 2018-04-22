@@ -29,6 +29,7 @@ npm install
 ## Deployment
 
 You should deploy it at any SPA host, like git-hub pages or heroku.
+The current stage of the application can be found at: https://github.com/Pedroglp/billing-splitter
 
 ## Built With
 
