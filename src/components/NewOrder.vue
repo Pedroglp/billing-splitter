@@ -40,7 +40,7 @@
             }
         },
         methods: {
-            saveCotumerOrder(){
+            saveCostumerOrder(){
                 //commit addCostumerToTable
                 this.costumerId += 1
                 this.costumerName = ''
@@ -50,6 +50,7 @@
             },
         },
         created() {
+            //get last tableId
             //commit pushTable
         }
     }
