@@ -5,7 +5,7 @@
             <tr v-for="item in items" :key="item.id">
                 <td><a>{{item.name}}</a></td>
                 <td>{{`R$ ${item.value}`}}</td>
-                <td><button @click="onClickItem(item)">+</button></td>
+                <td><button @click="onClickAddItem(item)">+</button></td>
             </tr>
         </table>
     </div>
@@ -19,7 +19,7 @@
             return {}
         },
         methods:{
-            onClickItem(product){
+            onClickAddItem(product){
                 let payload = {
                     tableId: this.tableId, 
                     costumerId: this.costumerId, 
