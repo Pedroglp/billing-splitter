@@ -3,7 +3,7 @@
         <table>
             <th></th>
             <tr v-for="item in items" :key="item.id">
-                <td><a @click="onClickItem">{{item.name}}</a></td>
+                <td><a>{{item.name}}</a></td>
                 <td>{{`R$ ${item.value}`}}</td>
                 <td><button @click="onClickMinus">-</button></td>
             </tr>
@@ -19,7 +19,6 @@
             return {}
         },
         methods: {
-            onClickAdd(){ alert('Clicked +') },
             onClickMinus(){ alert('Clicked -') }
         },
         computed: {
