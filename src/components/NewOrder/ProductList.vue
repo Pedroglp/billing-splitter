@@ -5,7 +5,7 @@
             <tr v-for="item in items" :key="item.id">
                 <td><a>{{item.name}}</a></td>
                 <td>{{`R$ ${item.value}`}}</td>
-                <td><button>+</button></td>
+                <td><button @click="onClickAddItem(item)">+</button></td>
             </tr>
         </table>
     </div>
@@ -14,12 +14,19 @@
 <script>
     export default {
         name:'productlist',
-        props: ['items'],
+        props: ['items', 'costumerId', 'tableId'],
         data(){
             return {}
         },
         methods:{
-            onClickItem(){ alert('Item Clicked') },
+            onClickAddItem(product){
+                let payload = {
+                    tableId: this.tableId, 
+                    costumerId: this.costumerId, 
+                    product: product
+                }
+                this.$store.dispatch('addProduct', payload)
+            }
         }
     }
 </script>

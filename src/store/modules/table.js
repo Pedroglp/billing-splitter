@@ -155,9 +155,9 @@ const getters = {
     },
     getCostumer: (state, getters) => payload => {
         //filter table
-        let targetTable = getters.getTable(payload.tableId)
+        let targetTable = getters.getTable(parseInt(payload.tableId))
         return targetTable.costumers.find(costumer => {
-            return payload.costumerId === costumer.id
+            return parseInt(payload.costumerId) === costumer.id
         }, {})
     },
     getCostumerList: (state) => id => {
@@ -170,21 +170,18 @@ const mutations = {
         let id = this.state.tables[this.state.tables.length -1].id + 1
         this.state.tables.push({id: id, name:`Mesa${id}`, costumers:[]})
     },
-    pushProductToCostumer(state, payload) {
+    ADD_PRODUCT(state, payload) {
         //filter costumer
-        let costumer = this.getters.getCostumer({table: targetTable, payload: payload.costumerId})
+        console.log(JSON.stringify(payload))
+        let costumer = this.getters.getCostumer({tableId: payload.tableId, costumerId: payload.costumerId})
         //add item
-        cotumer.products.push(payload.product)
+        costumer.products.push(payload.product)
     },
-    productAddQuantity(state, payload) {
+    REMOVE_PRODUCT(state, payload) {
         //filter table
         //filter costumer
     },
-    productSubtractQuantity(state, payload) {
-
-    },
     PAY_BILL(state, payload){
-        console.log(`Aqui: `+JSON.stringify(payload))
         let table = this.getters.getTable(payload.tableId)
         let tableWithoutCostumer = table.costumers.filter(costumer => {
             return costumer.id != payload.costumerId
@@ -203,6 +200,9 @@ const actions = {
     },
     payBill({commit}, payload){
         commit('PAY_BILL', payload)
+    },
+    addProduct({commit}, payload){
+        commit('ADD_PRODUCT', payload)
     }
     
 }
