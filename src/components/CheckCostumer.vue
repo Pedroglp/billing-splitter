@@ -2,7 +2,10 @@
     <div class="checkcostumer">
         <h1>Pedido</h1>
         <h2>Cardápio</h2>
-        <productlist :items="getProducts"></productlist>
+        <productlist    :items="getProducts" 
+                        :tableId="$route.query.tableId" 
+                        :costumerId="$route.params.id">
+        </productlist>
         <h2>Escolhidos</h2>
         <orderlist :items="getOrderFromCostumer"></orderlist>
         <div class="total">Total: R$ {{getTotal}}</div>
