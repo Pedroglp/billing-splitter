@@ -1,0 +1,49 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  max-width: 100%;
+}
+
+.row::before{
+  display: table;
+  content: " ";
+  clear: both;
+}
+
+.row::after {
+  display: table;
+  content: " ";
+  clear: both;
+  margin-bottom: 3vh;
+}
+
+  .one {
+    width: 100%;
+  }
+  .half {
+    width: calc(100% / 2);
+  }
+  .one-third {
+    width: calc(100% / 3);
+  }
+  .one-fourth {
+    width: calc(100% / 4);
+  }
+  .two-thirds {
+    width: calc(100% / 3 * 2);
+  }
+  .column {
+    float: left;
+  }
