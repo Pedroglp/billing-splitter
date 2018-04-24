@@ -1,6 +1,8 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
+  <div class="container">
+    <div id="app">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -11,33 +13,35 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 20px;
+  color: #6e6e6b;
+  font-size: 1.05rem;
 }
 
-h1, h2 {
+h1 {
   font-weight: normal;
-  margin: 3vh 3vh;
+  margin: 0 0 0 0;
+  color: white;
+  width:100%;
+  background-color: #42b983;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
+ h2 {
+  font-weight: normal;
+  margin: 0 0 0 0;
+  width: max-content;
+  text-decoration: underline #42b983;
 }
 
 a {
   color: #42b983;
+  cursor: pointer;
 }
 
 .small-table{
@@ -52,5 +56,31 @@ table{
     width: 100%;
     margin-bottom: 5vh;
 }
+
+input[type=text] {
+    background-color: white;
+    background-image: url('assets/user-silhouette.png');
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    line-height: 1.4rem;
+    font-size : 1.1rem;
+    border: 2px solid #42b983;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #42b983;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    font-size : 1.1rem;
+    cursor: pointer;
+}
+
+@import 'assets/css/smallbs.css';
 
 </style>
