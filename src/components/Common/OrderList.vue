@@ -5,7 +5,7 @@
             <tr v-for="item in items" :key="item.id">
                 <td><a>{{item.name}}</a></td>
                 <td>{{`R$ ${item.value}`}}</td>
-                <td><button @click="onClickMinus">-</button></td>
+                <td><button @click="onClickMinus(items.indexOf(item))">-</button></td>
             </tr>
         </table>
     </div>
@@ -14,12 +14,20 @@
 <script>
     export default {
         name:'orderlist',
-        props: ['items',{'show-total':Boolean}],
+        props: ['items', 'costumerId', 'tableId'],
         data() {
             return {}
         },
         methods: {
-            onClickMinus(){ alert('Clicked -') }
+            onClickMinus(itemIndex){
+                let payload = {
+                    itemIndex: itemIndex,
+                    costumerId: this.costumerId,
+                    tableId: this.tableId
+                }
+                console.log(JSON.stringify(payload))
+                this.$store.dispatch('removeProduct', payload)
+            }
         },
         computed: {
             total(){ return `R$ 00,00` }
