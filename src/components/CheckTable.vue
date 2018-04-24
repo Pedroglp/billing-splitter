@@ -1,12 +1,18 @@
 <template>
     <div class="checktable">
-        <h1>{{`Mesa ${$route.params.id}`}}</h1>
-        <h2>Pedidos da Mesa</h2>
-        <productlist :items="getProducts"></productlist>
-        <div class="total">Total: R$ {{getTotal}}</div>
-        <h2>Clientes</h2>
-        <costumerlist :table="getTable"></costumerlist>
-        <button @click="goBack()">Voltar</button>
+        <div class = "row">
+            <h1>{{`Mesa ${$route.params.id}`}}</h1>
+        </div>
+        <div class = "row">
+            <h2>Pedidos</h2>
+            <productlist :items="getProducts"></productlist>
+            <div class="total">Total: R$ {{getTotal}}</div>
+        </div>
+        <div class = "row">
+            <h2>Clientes</h2>
+            <costumerlist :table="getTable"></costumerlist>
+            <button @click="goBack()">Voltar</button>
+        </div>
     </div>
 </template>
 

@@ -1,7 +1,9 @@
 <template>
     <div class="neworder">
-        <h1>Novo Pedido</h1>
-        <input type="text" placeholder="Nome do Cliente" v-model="costumerName">
+        <div class = "row">
+            <h1>Novo Pedido</h1>
+            <input type="text" placeholder="Nome do Cliente" v-model="costumerName" class="name-input">
+        </div>
         <h2>Cardápio</h2>
         <productlist    :items="getProducts" 
                         :tableId="tableId" 
@@ -75,3 +77,9 @@
         }
     }
 </script>
+
+<style>
+.name-input{
+    margin-top: 3vh;
+}
+</style>
