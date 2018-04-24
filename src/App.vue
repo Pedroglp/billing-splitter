@@ -59,7 +59,7 @@ table{
 
 input[type=text] {
     background-color: white;
-    background-image: url('/billing-splitter/assets/user-silhouette.png');
+    background-image: url('assets/user-silhouette.png');
     background-position: 5px 5px;
     background-repeat: no-repeat;
     padding-left: 30px;
