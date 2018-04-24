@@ -7,7 +7,10 @@
                         :costumerId="$route.params.id">
         </productlist>
         <h2>Escolhidos</h2>
-        <orderlist :items="getOrderFromCostumer"></orderlist>
+        <orderlist  :items="getOrderFromCostumer"
+                    :tableId="$route.query.tableId" 
+                    :costumerId="$route.params.id">
+        </orderlist>
         <div class="total">Total: R$ {{getTotal}}</div>
         <button @click="goBack">Voltar</button>
         <button @click="confirmPayment">Pagar</button>
