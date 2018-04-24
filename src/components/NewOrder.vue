@@ -8,7 +8,11 @@
                         :costumerId="costumerId">
         </productlist>
         <h2>Escolhidos</h2>
-        <orderlist :items="getOrderFromCostumer"></orderlist>
+        <orderlist 
+            :items="getOrderFromCostumer" 
+            :costumerId="costumerId" 
+            :tableId="tableId" >
+        </orderlist>
         <button @click="saveTableOrder">Finalizar</button>
         <button @click="saveCostumerOrder">Adicionar Pedido</button>
     </div>

@@ -171,15 +171,12 @@ const mutations = {
         this.state.tables.push({id: id, name:`Mesa${id}`, costumers:[]})
     },
     ADD_PRODUCT(state, payload) {
-        //filter costumer
-        console.log(JSON.stringify(payload))
         let costumer = this.getters.getCostumer({tableId: payload.tableId, costumerId: payload.costumerId})
-        //add item
         costumer.products.push(payload.product)
     },
     REMOVE_PRODUCT(state, payload) {
-        //filter table
-        //filter costumer
+        let costumer = this.getters.getCostumer({tableId: payload.tableId, costumerId: payload.costumerId})
+        costumer.products.splice(payload.itemIndex, 1)
     },
     PAY_BILL(state, payload){
         let table = this.getters.getTable(payload.tableId)
@@ -203,6 +200,9 @@ const actions = {
     },
     addProduct({commit}, payload){
         commit('ADD_PRODUCT', payload)
+    },
+    removeProduct({commit}, payload){
+        commit('REMOVE_PRODUCT', payload)
     }
     
 }
