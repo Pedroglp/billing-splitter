@@ -3,7 +3,7 @@
         <table>
             <th></th>
             <tr v-for="table in tables" :key="table.id">
-                <td><a @click="onClickTable(table.id)">{{table.name}}</a></td>
+                <td><a @click="onClickTable(table.id)" class="table-name">{{table.name}}</a></td>
             </tr>
         </table>
     </div>
@@ -23,3 +23,10 @@
         }
     }
 </script>
+
+<style>
+.table-name{
+    font-size:1.55rem;
+    margin: 4vh auto;
+}
+</style>
