@@ -10,7 +10,7 @@ const state = {
     tables: [ 
         {
             id: 1, 
-            name:'Mesa 01', 
+            name:'Mesa 1', 
             costumers:[ 
                 {
                     id: 1, 
@@ -24,7 +24,7 @@ const state = {
                         },
                         {
                             id:4, 
-                            name: 'Produto 5', 
+                            name: 'Produto 4', 
                             value: 25.00,
                             quantity: 1
                         }
@@ -70,7 +70,7 @@ const state = {
         },
         {
             id: 2, 
-            name:'Mesa 02', 
+            name:'Mesa 2', 
             costumers:[ 
                 {
                     id: 1, 
@@ -134,13 +134,13 @@ const state = {
 const getters = {
     getTable: (state) => id => {
         return state.tables.find(table => {
-            return table.id === id
+            return table.id === parseInt(id)
         })
     },
     getTableList: (state) => {
         return state.tables
     },
-    getTableProducts:(state, getters) => id =>{
+    getTableProducts: (state, getters) => id =>{
         let table = getters.getTable(id)
         let productsList = []
         return table.costumers.reduce((productsList, costumer) => {
@@ -166,9 +166,13 @@ const getters = {
 }
 
 const mutations = {
-    PUSH_TABLE(state, table) {
-        let id = this.state.tables[this.state.tables.length -1].id + 1
-        this.state.tables.push({id: id, name:`Mesa${id}`, costumers:[]})
+    PUSH_TABLE(state) {
+        let id = state.tables[state.tables.length -1].id + 1
+        state.tables.push({id: id, name:`Mesa ${id}`, costumers:[{id: 1, name:'', products: []}]})
+    },
+    ADD_COSTUMER_TO_TABLE(state, payload) {
+        let table = this.getters.getTable(payload.tableId)
+        table.costumers.push(payload.costumer)
     },
     ADD_PRODUCT(state, payload) {
         let costumer = this.getters.getCostumer({tableId: payload.tableId, costumerId: payload.costumerId})
@@ -178,33 +182,39 @@ const mutations = {
         let costumer = this.getters.getCostumer({tableId: payload.tableId, costumerId: payload.costumerId})
         costumer.products.splice(payload.itemIndex, 1)
     },
-    PAY_BILL(state, payload){
+    PAY_BILL(state, payload) {
         let table = this.getters.getTable(payload.tableId)
         let tableWithoutCostumer = table.costumers.filter(costumer => {
             return costumer.id != payload.costumerId
         })
         table.costumers = tableWithoutCostumer
         router.push(`/billing-splitter/mesa/${payload.tableId}`)
+    },
+    UPDATE_COSTUMER(state, payload) {
+        let costumer = this.getters.getCostumer({tableId: payload.tableId, costumerId: payload.costumerId})
+        costumer.name = payload.costumerName
     }
 }
 
 const actions = {
-    newTable({commit, state}){
+    pushTable({commit}) {
         commit('PUSH_TABLE')
     },
-    addCostumerToTable({commit, state}){
-        commit('ADD_COSTUMER')
+    addCostumerToTable({commit}, payload) {
+        commit('ADD_COSTUMER_TO_TABLE', payload)
     },
-    payBill({commit}, payload){
+    payBill({commit}, payload) {
         commit('PAY_BILL', payload)
     },
-    addProduct({commit}, payload){
+    addProduct({commit}, payload) {
         commit('ADD_PRODUCT', payload)
     },
-    removeProduct({commit}, payload){
+    removeProduct({commit}, payload) {
         commit('REMOVE_PRODUCT', payload)
+    },
+    updateCostumer({commit}, payload) {
+        commit('UPDATE_COSTUMER', payload)
     }
-    
 }
 
 export default {

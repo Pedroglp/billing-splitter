@@ -1,7 +1,7 @@
 <template>
     <div class="neworder">
         <h1>Novo Pedido</h1>
-        <input type="text" placeholder="Nome do Cliente">
+        <input type="text" placeholder="Nome do Cliente" v-model="costumerName">
         <h2>Cardápio</h2>
         <productlist    :items="getProducts" 
                         :tableId="tableId" 
@@ -28,10 +28,9 @@
         components:{productlist, orderlist},
         data() {
             return {
-                tableId:1,
-                costumerId: 1,
-                costumerName: '',
-                costumersAtTable: []
+                tableId: 0,
+                costumerId: 1, //this could be a guid for user.
+                costumerName: ''
             }
         },
         computed: {
@@ -39,23 +38,40 @@
                 return this.$store.getters.getProductList
             },
             getOrderFromCostumer(){
-                let costumer = this.$store.getters.getCostumer({tableId: this.tableId, costumerId: this.costumerId})
+                let costumer = this.$store.getters.getCostumer({
+                    tableId: this.tableId, 
+                    costumerId: this.costumerId
+                }) || {}
                 return costumer.products
             }
         },
         methods: {
             saveCostumerOrder(){
-                //commit addCostumerToTable
+                let payload = {
+                    tableId: this.tableId, 
+                    costumerId: this.costumerId,
+                    costumerName: this.costumerName
+                }
+                this.$store.dispatch('updateCostumer', payload)
+                //adds new costumer to the table, change it later
                 this.costumerId += 1
                 this.costumerName = ''
+                let newCostumerPayload = {
+                    tableId: this.tableId, 
+                    costumer:{id: this.costumerId, name: this.costumerName, products: []}
+                }
+                this.$store.dispatch('addCostumerToTable', newCostumerPayload)
+
             },
             saveTableOrder(){
+                //TODO check empty table
+                //TODO check empty costumer at table
                 router.push('/billing-splitter/')
             },
         },
         created() {
-            //get last tableId
-            //commit pushTable
+            this.$store.dispatch('pushTable')
+            this.tableId = this.$store.getters.getTableList.slice(-1).pop().id //getLast
         }
     }
 </script>
