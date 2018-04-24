@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div id="app">
-      <router-view></router-view>
+      <transition name = "fade">
+        <router-view></router-view>
+      </transition>
     </div>
   </div>
 </template>
@@ -82,5 +84,6 @@ button {
 }
 
 @import 'assets/css/smallbs.css';
+@import 'assets/css/transition.css';
 
 </style>
