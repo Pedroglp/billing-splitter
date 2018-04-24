@@ -1,19 +1,27 @@
 <template>
     <div class="checkcostumer">
-        <h1>Pedido</h1>
-        <h2>Cardápio</h2>
-        <productlist    :items="getProducts" 
+        <div class = "row">
+            <h1>Pedido</h1>
+        </div>
+        <div class = "row">
+            <h2>Cardápio</h2>
+            <productlist    :items="getProducts" 
+                            :tableId="$route.query.tableId" 
+                            :costumerId="$route.params.id">
+            </productlist>
+        </div>
+        <div class = "row">
+            <h2>Escolhidos</h2>
+            <orderlist  :items="getOrderFromCostumer"
                         :tableId="$route.query.tableId" 
                         :costumerId="$route.params.id">
-        </productlist>
-        <h2>Escolhidos</h2>
-        <orderlist  :items="getOrderFromCostumer"
-                    :tableId="$route.query.tableId" 
-                    :costumerId="$route.params.id">
-        </orderlist>
-        <div class="total">Total: R$ {{getTotal}}</div>
-        <button @click="goBack">Voltar</button>
-        <button @click="confirmPayment">Pagar</button>
+            </orderlist>
+        </div>
+        <div class = "row">
+            <div class="total">Total: R$ {{getTotal}}</div>
+            <button @click="goBack">Voltar</button>
+            <button @click="confirmPayment">Pagar</button>
+        </div>  
     </div>
 </template>
 
@@ -73,6 +81,6 @@
 
 <style>
 .total {
-    margin: 5vh auto;
+    margin-bottom: 2vh;
 }
 </style>

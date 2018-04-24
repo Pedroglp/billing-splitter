@@ -1,6 +1,8 @@
 <template>
     <div class="tables">
-        <h1>Mesas</h1>
+        <div class = "row">
+            <h1>Mesas</h1>
+        </div>
         <tablelist :tables="getTables"></tablelist>
         <button @click="goToNewOrder">Abrir Mesa</button>
     </div>
