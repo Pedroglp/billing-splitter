@@ -25,7 +25,6 @@
                     costumerId: this.costumerId,
                     tableId: this.tableId
                 }
-                console.log(JSON.stringify(payload))
                 this.$store.dispatch('removeProduct', payload)
             }
         },
