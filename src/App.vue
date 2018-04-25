@@ -32,6 +32,7 @@ h1 {
   color: white;
   width:100%;
   height:48px;
+  text-align: center;
   background-color: #42b983;
 }
 
