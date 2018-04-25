@@ -20,7 +20,7 @@
                 :tableId="tableId" >
             </orderlist>
         </div>
-        <div class = "row float-down">
+        <div class = "row">
             <button @click="saveTableOrder">Finalizar</button>
             <button @click="saveCostumerOrder">Adicionar Pedido</button>
         </div>
