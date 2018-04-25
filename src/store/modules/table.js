@@ -176,7 +176,7 @@ const mutations = {
     },
     ADD_PRODUCT(state, payload) {
         let costumer = this.getters.getCostumer({tableId: payload.tableId, costumerId: payload.costumerId})
-        costumer.products.push(payload.product)
+        costumer.products.unshift(payload.product)
     },
     REMOVE_PRODUCT(state, payload) {
         let costumer = this.getters.getCostumer({tableId: payload.tableId, costumerId: payload.costumerId})
