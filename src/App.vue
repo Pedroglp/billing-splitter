@@ -49,7 +49,7 @@ a {
 .small-table{
     display: block;
     margin:0 auto;
-    max-height: 20vh;
+    max-height: 22vh;
     overflow: scroll;
 }
 
