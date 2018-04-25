@@ -39,7 +39,6 @@ h1 {
  h2 {
   font-weight: normal;
   margin: 0 0 0 0;
-  width: max-content;
   text-align: center;
   text-decoration: underline #42b983;
 }
