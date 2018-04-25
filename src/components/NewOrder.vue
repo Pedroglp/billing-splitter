@@ -73,7 +73,7 @@
                     costumer:{id: this.costumerId, name: this.costumerName, products: []}
                 }
                 this.$store.dispatch('addCostumerToTable', newCostumerPayload)
-                setTimeout(this.showAlert = false, 1000)
+                setTimeout(()=> this.showAlert = false, 2000)
             },
             saveTableOrder(){
                 //TODO check empty table
