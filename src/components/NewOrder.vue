@@ -19,6 +19,8 @@
                 :costumerId="costumerId" 
                 :tableId="tableId" >
             </orderlist>
+        </div>
+        <div class = "row float-down">
             <button @click="saveTableOrder">Finalizar</button>
             <button @click="saveCostumerOrder">Adicionar Pedido</button>
         </div>
