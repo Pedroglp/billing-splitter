@@ -3,8 +3,12 @@
         <div class = "row">
             <h1>Mesas</h1>
         </div>
-        <tablelist :tables="getTables"></tablelist>
-        <button @click="goToNewOrder">Abrir Mesa</button>
+        <div class = "row">
+            <tablelist :tables="getTables"></tablelist>
+        </div>
+        <div class = "row float-down">
+            <button @click="goToNewOrder">Abrir Mesa</button>
+        </div>
     </div>
 </template>
 

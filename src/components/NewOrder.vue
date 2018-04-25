@@ -1,38 +1,47 @@
 <template>
     <div class="neworder">
         <div class = "row">
+            <alert message="Pedido Inserido !" :show="showAlert"/>
             <h1>Novo Pedido</h1>
             <input type="text" placeholder="Nome do Cliente" v-model="costumerName" class="name-input">
         </div>
-        <h2>Cardápio</h2>
-        <productlist    :items="getProducts" 
-                        :tableId="tableId" 
-                        :costumerId="costumerId">
-        </productlist>
-        <h2>Escolhidos</h2>
-        <orderlist 
-            :items="getOrderFromCostumer" 
-            :costumerId="costumerId" 
-            :tableId="tableId" >
-        </orderlist>
-        <button @click="saveTableOrder">Finalizar</button>
-        <button @click="saveCostumerOrder">Adicionar Pedido</button>
+        <div class = "row">
+            <h2>Cardápio</h2>
+            <productlist    :items="getProducts" 
+                            :tableId="tableId" 
+                            :costumerId="costumerId">
+            </productlist>
+        </div>
+        <div class = "row">
+            <h2>Escolhidos</h2>
+            <orderlist 
+                :items="getOrderFromCostumer" 
+                :costumerId="costumerId" 
+                :tableId="tableId" >
+            </orderlist>
+        </div>
+        <div class = "row float-down">
+            <button @click="saveTableOrder">Finalizar</button>
+            <button @click="saveCostumerOrder">Adicionar Pedido</button>
+        </div>
     </div>
 </template>
 
 <script>
     import productlist from "./NewOrder/ProductList.vue"
     import orderlist from "./Common/OrderList.vue"
+    import alert from "./Common/Alert.vue"
     import router from '../router'
 
     export default {
         name:'neworder',
-        components:{productlist, orderlist},
+        components:{productlist, orderlist, alert},
         data() {
             return {
                 tableId: 0,
                 costumerId: 1, //this could be a guid for user.
-                costumerName: ''
+                costumerName: '',
+                showAlert: false,
             }
         },
         computed: {
@@ -55,6 +64,7 @@
                     costumerName: this.costumerName
                 }
                 this.$store.dispatch('updateCostumer', payload)
+                this.showAlert = true
                 //adds new costumer to the table, change it later
                 this.costumerId += 1
                 this.costumerName = ''
@@ -63,7 +73,7 @@
                     costumer:{id: this.costumerId, name: this.costumerName, products: []}
                 }
                 this.$store.dispatch('addCostumerToTable', newCostumerPayload)
-
+                setTimeout(this.showAlert = false, 1000)
             },
             saveTableOrder(){
                 //TODO check empty table

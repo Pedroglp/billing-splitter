@@ -47,3 +47,10 @@ body{
   .column {
     float: left;
   }
+
+  .float-down {
+    position: fixed;
+    width: 100vw;
+    left: 0;
+    bottom: 5vh;
+  }

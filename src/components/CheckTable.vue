@@ -42,6 +42,11 @@
                 return this.products.reduce((total, product) => {
                     return total + product.value
                 }, 0)
+            },
+            autoCloseTable() {
+                if(this.getTotal() == 0){
+                    this.$store.getters.closeTable(parseInt(this.$route.params.id))
+                }
             }
         },
         methods:{
